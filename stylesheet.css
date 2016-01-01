@@ -1,0 +1,30 @@
+
+.single-task { padding-bottom: 15px; }
+
+.data { text-align: center; }
+
+.action-buttons { 
+  margin-top: 20px;
+  text-align: center;
+}
+
+.add-row-button { width: 100%; }
+
+.editable-input { width: 100px; }
+
+.text-inside {
+  width: 100px; 
+  font-size: 15px;
+}
+
+.title { text-align: center; }
+
+.heading {
+  font-size: 17px;
+  color: #96f;
+}
+
+.save-cancel {
+  margin-top: 35px;
+  text-align: center;
+}
