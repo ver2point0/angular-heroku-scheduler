@@ -25,40 +25,33 @@
 <div ng-app="scheduler" ng-controller="Control" class="container">
   <div class="row">
     <div class="col-md-12">
-      <table class="table table-hover table-responsive" ng-repeat="t in task">
+      <table class="table table-responsive" ng-repeat="t in tasks">
         <tr class="single-task row">
           
           <td class="data col-md-2">
             <h3 class="heading">Task name</h3>
-            <span class="text-inside" editable-text="t.name" e-name="name" e-form"row-form">
-              $ {{ t.name || "empty" }}
+            <span class="text-inside" editable-text="t.name" e-name="name" e-form="rowform">
+              {{ t.name || 'empty' }}
             </span>
           </td>
           
           <td class="data col-md-2">
             <h3 class="heading">Dyno size</h3>
-            <span class="text-inside" editable-select="t.dynoSize" e-name="dynoSize" e-form"row-form" e-ng-options="d as d for d in dynoSizes">
+            <span class="text-inside" editable-select="t.dynoSize" e-name="dynoSize" e-form="rowform" e-ng-options="d as d for d in dynoSizes">
               {{ t.dynoSize }}
             </span>
           </td>
           
           <td class="data col-md-2">
             <h3 class="heading">Frequency</h3>
-            <span class="text-inside" editable-select="t.frequency" e-name="frequency" e-form"row-form" e-ng-options="f as f for f in frequencies">
+            <span class="text-inside" editable-select="t.frequency" e-name="frequency" e-form="rowform" e-ng-options="f as f for f in frequencies">
               {{ t.frequency }}
             </span>
           </td>
           
           <td class="data col-md-2">
             <h3 class="heading">Last run</h3>
-            <span class="text-inside">
-              {{ t.lastRun }}
-            </span>
-          </td>
-          
-          <td class="data col-md-2">
-            <h3 class="heading">Last run</h3>
-            <span class="text-inside">
+            <span class="text-inside" editable-select="t.lastRun" e-name="lastRun" e-form="rowform" e-ng-options="l as l for l in lastRun">
               {{ t.lastRun }}
             </span>
           </td>
@@ -66,27 +59,29 @@
           <td class="data col-md-2">
             <h3 class="heading">Next due</h3>
             <span class="text-inside">
-              {{ newDate | date:"EEE, dd MMM yyyy" }} :
-              <span class="text-inside" editable-select="t.nextDue" e-name="times" e-form="row-form" e-ng-options="t as t for t in times">
+              {{ newDate | date:'EEE, dd MMM yyyy' }} :
+              <span class="text-inside" editable-select="t.nextDue" e-name="times" e-form="rowform" e-ng-options="t as t for t in times">
                 {{ t.nextDue }}
               </span>
             </span>
           </td>
+          
           <td style="white-space: nowrap" class="col-md-3 col-sm-3 col-xs-6">
-            <form editable-form name="row-form" onbeforesave="saveTask($data, t.id)" ng-show="row-form.$visible" class="form-buttons form-inline" shown="inserted == t">
+            <form editable-form name="rowform" onbeforesave="saveTask($data, t.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == t">
               <div class="buttons save-cancel">
-                <button type="submit" ng-disabled="row-form.$waiting" class="btn btn-primary">Save</button>
-                <button type="button" ng-disabled="row-form.$waiting" ng-click="row-form.$cancel()" class="btn btn-default">Cancel</button>
+                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success">Save</button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-info">Cancel</button>
               </div>
             </form>
-            <div class="buttons action-buttons" ng-show="!row-form.$visible">
-              <button class="btn btn-primary" ng-click="row-form.$show()">Edit</button>
+            <div class="buttons action-buttons" ng-show="!rowform.$visible">
+              <button class="btn btn-warning" ng-click="rowform.$show()">Edit</button>
               <button class="btn btn-danger" ng-click="removeTask($index)">Delete</button>
             </div>
           </td>
+          
         </tr>
       </table>
-      <button class="add-row-button btn btn-default btn-lg" ng-click="addTask()">Add task</button>
+      <button class="add-row-button btn btn-default" ng-click="addTask()">Add task</button>
     </div>
   </div>
 </div>
